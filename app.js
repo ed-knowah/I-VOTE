@@ -34,8 +34,8 @@ app.get("/candidate", async (req, res) => {
   try {
     let allcandidate = await nominee.nomineeModel.find();
     console.log(allcandidate);
-    if (allcandidate.length == []) {
-      res.send("no candidate yet");
+    if (allcandidate.length == 0) {
+      res.send("No candidate yet");
     } else {
       let totalcandidate = allcandidate.length;
       //console.log(totalcandidate);
@@ -88,13 +88,13 @@ app.post("/addCandidate", async (req, res) => {
           console.log(err);
         }
         console.log(saved);
-        res.send("Created a new user");
+       console.log("Created a new user");
       });
     }
   }
 
   let allcandidate = await nominee.nomineeModel.find();
-  res.json({
+  return res.json({
     candidate: allcandidate,
   });
 });
