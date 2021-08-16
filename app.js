@@ -205,7 +205,7 @@ app.get("/candidate/top/:category", async (req, res) => {
       }
       //console.log(votesArray);
       let itemsMap = {};
-      let maxValue = 0;
+      let userId = 0;
       let maxCount = 0;
 
       for (let item of votesArray) {
@@ -216,14 +216,14 @@ app.get("/candidate/top/:category", async (req, res) => {
           itemsMap[item]++;
         }
         if (itemsMap[item] > maxCount) {
-          maxValue = item;
+          userId = item;
           maxCount = itemsMap[item];
         }
       }
-      console.log(`Value : ${maxValue}, Count : ${maxCount}`);
+      console.log(`Value : ${userId}, Count : ${maxCount}`);
 
       const foundWinner = await nominee.nomineeModel.findOne({
-        _id: maxValue,
+        _id: userId,
       });
 
       //console.log(foundWinner.firstname);
